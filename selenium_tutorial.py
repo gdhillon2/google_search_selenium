@@ -26,6 +26,15 @@ search.send_keys(Keys.RETURN)
 # find google searches
 results = browser.find_elements(By.XPATH, "//h3[@class='LC20lb MBeuO DKV0Md']")
 
-# prints google search result titles
+# saves results in text file and prints in terminal
 for result in results:
+	with open('results.txt', 'a+') as file:
+		file.seek(0)
+		data = file.read(100)
+		if len(data) > 0:
+			file.write('\n')
+		file.write(result.text)
 	print(result.text)
+	
+
+
